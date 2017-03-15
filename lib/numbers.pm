@@ -23,4 +23,10 @@ sub factorial($) {
     $res;
 }
 
+sub grey_code($) {
+    my $n = shift;
+    
+    $n ^ $n >> 1;
+}
+
 __END__
