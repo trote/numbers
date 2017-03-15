@@ -29,4 +29,15 @@ sub grey_code($) {
     $n ^ $n >> 1;
 }
 
+sub rev_grey_code($) {
+    my $g = shift;
+
+    my $n = 0;
+    while ( $g ) {
+        $n ^= $g;
+        $g >>= 1
+    }
+    $n;
+}
+
 __END__
