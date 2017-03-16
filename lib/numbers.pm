@@ -40,4 +40,17 @@ sub rev_grey_code($) {
     $n;
 }
 
+sub factorial_get_prime_pow($$) {
+    my ( $n, $p ) = @_;
+    
+    my $count = 0;
+    my $ppow = $p;
+    while ( $ppow <= $n ) {
+        $count += int($n / $ppow);
+        $ppow *= $p;
+    }
+    
+    $count;
+}
+
 __END__
