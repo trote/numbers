@@ -5,6 +5,8 @@ package numbers;
 use warnings;
 use strict;
 
+use List::Util qw( reduce );
+
 sub ceil($$) {
     my ( $x, $y ) = @_;
 
@@ -51,6 +53,22 @@ sub factorial_get_prime_pow($$) {
     }
     
     $count;
+}
+
+sub nck($$) {
+    my ( $n, $k ) = @_;
+    
+    die "Invalid value for n: $n" if $n < 0;
+    return 0 if $k < 0 or $k > $n;
+    return 1 if grep { $k == $_ } (0, $n);
+    return $n if grep { $k == $_ } (1, $n - 1);
+
+    my $low_min = 1;
+    my $low_max = $n < $k ? $n : $k;
+    my $high_min = $n < $k ? 1 : $n - $k + 1;
+    my $high_max = $n;
+    
+    (reduce { $a * $b } 1, $high_min .. $high_max) / (reduce { $a * $b } 1, $low_min .. $low_max);
 }
 
 __END__
