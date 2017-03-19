@@ -6,6 +6,7 @@ use warnings;
 use strict;
 
 use List::Util qw( reduce );
+use Carp;
 
 sub ceil($$) {
     my ( $x, $y ) = @_;
@@ -94,12 +95,19 @@ sub gcd_euclid {
     $b ? gcd_euclid( $b, $a % $b ) : $a;
 }
 
-sub gcd {
+sub gcd($$) {
     my ( $a, $b ) = @_;
 
     return abs($a) unless $b;
     ( $a, $b ) = ( $b % $a, $a ) while $a;
     abs($b);
+}
+
+sub lcm($$) {
+    my ( $a, $b ) = @_;
+
+    croak "lcm arguments may not be zeros" if $a == 0 && $b == 0;
+    abs($a * $b) / gcd($a, $b);
 }
 
 __END__
