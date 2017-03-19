@@ -87,4 +87,11 @@ sub randint_bits($) {
     int(rand($high - $low)) + $low;
 }
 
+sub gcd_euclid {
+    my ( $a, $b ) = @_;
+
+    return $b unless $a;
+    $b ? gcd_euclid( $b, $a % $b ) : $a;
+}
+
 __END__
