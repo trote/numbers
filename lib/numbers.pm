@@ -71,4 +71,12 @@ sub nck($$) {
     (reduce { $a * $b } 1, $high_min .. $high_max) / (reduce { $a * $b } 1, $low_min .. $low_max);
 }
 
+sub len_in_bits($) {
+    my $n = shift;
+    
+    my $str = unpack("B32", pack("N", $n));
+    $str =~ s/0+(\d*)/$1/;
+    length $str;
+}
+
 __END__
