@@ -79,4 +79,12 @@ sub len_in_bits($) {
     length $str;
 }
 
+sub randint_bits($) {
+    my $size = shift;
+    
+    my $low = 1 << ($size - 1);
+    my $high = 1 << $size;
+    int(rand($high - $low)) + $low;
+}
+
 __END__
