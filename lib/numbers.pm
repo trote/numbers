@@ -94,4 +94,12 @@ sub gcd_euclid {
     $b ? gcd_euclid( $b, $a % $b ) : $a;
 }
 
+sub gcd {
+    my ( $a, $b ) = @_;
+
+    return abs($a) unless $b;
+    ( $a, $b ) = ( $b % $a, $a ) while $a;
+    abs($b);
+}
+
 __END__
